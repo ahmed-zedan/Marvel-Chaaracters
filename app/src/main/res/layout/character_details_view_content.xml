@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.zedan.example.marvelcharacters.presentation.characterDetails.CharacterDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:showIn="@layout/character_details_view">
+
+        <com.zedan.example.marvelcharacters.widget.CollapseView
+            android:id="@+id/comic_collapse_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:title="@string/comics"
+            app:childView="@{comicsNameList}"
+            app:show="@{!viewModel.character.comics.empty}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/comics_name_list"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/comics_name_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:spanCount="2"
+            android:paddingHorizontal="8dp"
+            android:clipToPadding="false"
+            app:sectionData="@{viewModel.character.comics}"
+            tools:listitem="@layout/character_section_item_raw"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/comic_collapse_view"
+            app:layout_constraintBottom_toTopOf="@id/series_collapse_view"
+            />
+
+
+        <com.zedan.example.marvelcharacters.widget.CollapseView
+            android:id="@+id/series_collapse_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:title="@string/series"
+            app:childView="@{seriesNameList}"
+            app:show="@{!viewModel.character.series.empty}"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/comics_name_list"
+            app:layout_constraintBottom_toTopOf="@id/series_name_list"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/series_name_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:spanCount="2"
+            android:paddingHorizontal="8dp"
+            android:clipToPadding="false"
+            app:sectionData="@{viewModel.character.series}"
+            tools:listitem="@layout/character_section_item_raw"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/series_collapse_view"
+            app:layout_constraintBottom_toTopOf="@id/stories_collapse_view"
+            />
+
+        <com.zedan.example.marvelcharacters.widget.CollapseView
+            android:id="@+id/stories_collapse_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:title="@string/stories"
+            app:childView="@{storiesNameList}"
+            app:show="@{!viewModel.character.stories.empty}"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/series_name_list"
+            app:layout_constraintBottom_toTopOf="@id/stories_name_list"
+
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/stories_name_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:spanCount="2"
+            android:paddingHorizontal="8dp"
+            android:clipToPadding="false"
+            app:sectionData="@{viewModel.character.stories}"
+            tools:listitem="@layout/character_section_item_raw"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/stories_collapse_view"
+            app:layout_constraintBottom_toTopOf="@id/event_collapse_view"
+            />
+
+        <com.zedan.example.marvelcharacters.widget.CollapseView
+            android:id="@+id/event_collapse_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:title="@string/events"
+            app:childView="@{eventNameList}"
+            app:show="@{!viewModel.character.events.empty}"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/stories_name_list"
+            app:layout_constraintBottom_toTopOf="@id/event_name_list"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/event_name_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:spanCount="2"
+            app:sectionData="@{viewModel.character.events}"
+            android:paddingHorizontal="8dp"
+            android:clipToPadding="false"
+            tools:listitem="@layout/character_section_item_raw"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/event_collapse_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

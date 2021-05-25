@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="character"
+            type="com.zedan.example.marvelcharacters.domain.local.CharacterEntity" />
+    </data>
+
+    <com.zedan.example.marvelcharacters.widget.CollapsibleToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="?actionBarSize"
+        app:layoutDescription="@xml/character_details_view_header_scene"
+        app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/character_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:load="@{character.image.path + `/landscape_xlarge.` + character.image.extension}"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RetrofitAdapter.ShapeableImage.Round.Bottom" />
+
+        <View
+            android:id="@+id/bg_shadow"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_shaow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/character_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{character.name}"
+            android:padding="12dp"
+            android:ellipsize="end"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            tools:text="Marvel" />
+
+    </com.zedan.example.marvelcharacters.widget.CollapsibleToolbar>
+</layout>

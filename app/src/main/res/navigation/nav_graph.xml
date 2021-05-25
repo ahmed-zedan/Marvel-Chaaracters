@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/charactersView">
+
+    <fragment
+        android:id="@+id/charactersView"
+        android:name="com.zedan.example.marvelcharacters.presentation.characters.CharactersView"
+        android:label="characters_view"
+        tools:layout="@layout/characters_view" >
+        <action
+            android:id="@+id/action_charactersView_to_characterDetailsView"
+            app:destination="@id/characterDetailsView" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterDetailsView"
+        android:name="com.zedan.example.marvelcharacters.presentation.characterDetails.CharacterDetailsView"
+        android:label="CharacterDetailsView"
+        tools:layout="@layout/character_details_view">
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
+</navigation>

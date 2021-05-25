@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.zedan.example.marvelcharacters.domain.local.CharacterEntity" />
+
+        <variable
+            name="clickListener"
+            type="com.zedan.example.marvelcharacters.presentation.characters.CharactersAdapter.CharacterClickListener" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?selectableItemBackgroundBorderless"
+        android:onClick="@{()-> clickListener.onCharacterClick(item.id)}">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/character_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="2:3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:load="@{item.image.path + `/portrait_uncanny.` + item.image.extension}"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RetrofitAdapter.ShapeableImage.Round.Reverse"
+            app:srcCompat="@drawable/rect"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

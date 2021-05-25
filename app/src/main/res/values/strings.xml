@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Marvel</string>
+    <string name="comics">Comics</string>
+    <string name="series">Series</string>
+    <string name="stories">Stories</string>
+    <string name="events">Events</string>
+    <string name="retry">retry</string>
+</resources>
